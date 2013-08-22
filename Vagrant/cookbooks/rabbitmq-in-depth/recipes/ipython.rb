@@ -2,7 +2,7 @@
 # Cookbook Name:: rabbitmq-in-depth
 # Recipe:: ipython
 #
-# Copyright 2013, Manning Publications, Gavin M. Roy
+# Copyright 2013 Manning Publications
 #
 # Install required OS libraries
 %w[ncurses-dev].each do |pkg|

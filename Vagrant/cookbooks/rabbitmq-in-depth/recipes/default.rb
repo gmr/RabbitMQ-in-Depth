@@ -2,7 +2,7 @@
 # Cookbook Name:: rabbitmq-in-depth
 # Recipe:: default
 #
-# Copyright 2013, Manning Publications, Gavin M. Roy
+# Copyright 2013 Manning Publications
 #
 include_recipe 'apt'
 include_recipe 'chef-cookbook-ssl'
