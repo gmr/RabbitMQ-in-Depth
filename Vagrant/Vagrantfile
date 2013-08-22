@@ -8,7 +8,7 @@ VAGRANTFILE_API_VERSION = "2"
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.provider "virtualbox" do |v|
-    v.name = "rabbitmq_in_depth"
+    v.name = "rabbitmq-in-depth"
     v.customize ["setextradata", :id, "VBoxInternal/Devices/VMMDev/0/Config/GetHostTimeDisabled", "1"]
   end
 
@@ -38,7 +38,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         "inet_port" => 9001
       }
     }
-    chef.add_recipe "rabbitmq_in_depth"
+    chef.add_recipe "rabbitmq-in-depth::default"
   end
   
   # IPython

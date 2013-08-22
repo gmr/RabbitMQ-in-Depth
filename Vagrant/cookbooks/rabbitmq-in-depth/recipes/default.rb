@@ -10,7 +10,7 @@ include_recipe 'git'
 include_recipe 'rabbitmq'
 include_recipe 'supervisor'
 include_recipe 'zeromq'
-include_recipe 'rabbitmq_in_depth::ipython'
+include_recipe 'rabbitmq-in-depth::ipython'
 
 # Enable plugins
 node[:rabbitmq][:enabled_plugins].each do |plgin|

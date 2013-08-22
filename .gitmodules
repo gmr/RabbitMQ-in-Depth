@@ -40,3 +40,9 @@
 [submodule "Vagrant/cookbooks/rabbitmq"]
 	path = Vagrant/cookbooks/rabbitmq
 	url = https://github.com/opscode-cookbooks/rabbitmq.git
+[submodule "Vagrant/cookbooks/vt-gpg"]
+	path = Vagrant/cookbooks/vt-gpg
+	url = https://github.com/VendaTech/chef-cookbook-gpg.git
+[submodule "Vagrant/cookbooks/git"]
+	path = Vagrant/cookbooks/git
+	url = https://github.com/opscode-cookbooks/git.git
