@@ -1,4 +1,4 @@
-name             'rabbitmq_in_depth'
+name             'rabbitmq-in-depth'
 maintainer       'Gavin M. Roy'
 maintainer_email 'gavinmroy@gmail.com'
 license          'BSD'

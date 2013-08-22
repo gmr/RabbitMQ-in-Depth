@@ -1,28 +1,13 @@
 #
-# Cookbook Name:: rabbitmq_in_depth
-# Recipe:: default
+# Cookbook Name:: rabbitmq-in-depth
+# Recipe:: ipython
 #
-# Copyright 2013, Gavin M. Roy
+# Copyright 2013, Manning Publications, Gavin M. Roy
 #
-include_recipe 'apt'
-include_recipe 'chef-cookbook-ssl'
-include_recipe 'git'
-include_recipe 'rabbitmq'
-include_recipe 'supervisor'
-include_recipe 'zeromq'
-
 # Install required OS libraries
 %w[ncurses-dev].each do |pkg|
   package pkg do
     action :install
-  end
-end
-
-# Enable plugins
-node[:rabbitmq][:enabled_plugins].each do |plgin|
-  rabbitmq_plugin plgin do
-    action :enable
-    notifies :restart, 'service[rabbitmq-server]', :delayed
   end
 end
 
@@ -33,17 +18,8 @@ end
   end
 end
 
-# Ensure the libraries used in the Python examples are always up to date
-%w[pika pamqp rmqid].each do |pkg|
-  python_pip pkg do
-    action [:install, :upgrade]
-  end
-end
-
 # Create the work Directories
-%w[/opt/rabbitmq_in_depth 
-   /opt/rabbitmq_in_depth/notebooks 
-   /var/log/ipython 
+%w[/var/log/ipython 
    /home/vagrant/.ipython
    /home/vagrant/.ipython/profile_default].each do |dir|
   directory dir do

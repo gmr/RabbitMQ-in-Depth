@@ -1,4 +1,4 @@
-rabbitmq_in_depth Cookbook
+rabbitmq-in-depth Cookbook
 ==========================
 Cookbook to setup a Vagrant VM with the base requirements and source code examples
 for RabbitMQ in Depth.
@@ -14,7 +14,7 @@ This cookbook is tested on Ubuntu Precise.
 
 Usage
 -----
-Just include `rabbitmq_in_depth` in your node's `run_list`:
+Just include `rabbitmq-in-depth` in your node's `run_list`:
 
 ```json
 {

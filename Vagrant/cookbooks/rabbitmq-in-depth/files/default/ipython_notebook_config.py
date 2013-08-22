@@ -446,4 +446,4 @@ c.NotebookApp.open_browser = False
 # c.NotebookManager.save_script = False
 
 # The directory to use for notebooks.
-c.NotebookManager.notebook_dir = u'/opt/rabbitmq_in_depth/notebooks'
+c.NotebookManager.notebook_dir = u'/opt/rabbitmq-in-depth/notebooks'
