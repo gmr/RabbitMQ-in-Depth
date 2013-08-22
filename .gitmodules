@@ -1,0 +1,42 @@
+[submodule "Vagrant/cookbooks/apt"]
+	path = Vagrant/cookbooks/apt
+	url = https://github.com/opscode-cookbooks/apt.git
+[submodule "Vagrant/cookbooks/build-essential"]
+	path = Vagrant/cookbooks/build-essential
+	url = https://github.com/opscode-cookbooks/build-essential.git
+[submodule "Vagrant/cookbooks/chef_handler"]
+	path = Vagrant/cookbooks/chef_handler
+	url = https://github.com/opscode-cookbooks/chef_handler.git
+[submodule "Vagrant/cookbooks/dmg"]
+	path = Vagrant/cookbooks/dmg
+	url = https://github.com/opscode-cookbooks/dmg.git
+[submodule "Vagrant/cookbooks/yum"]
+	path = Vagrant/cookbooks/yum
+	url = https://github.com/opscode-cookbooks/yum.git
+[submodule "Vagrant/cookbooks/windows"]
+	path = Vagrant/cookbooks/windows
+	url = https://github.com/opscode-cookbooks/windows.git
+[submodule "Vagrant/cookbooks/erlang"]
+	path = Vagrant/cookbooks/erlang
+	url = https://github.com/opscode-cookbooks/erlang.git
+[submodule "Vagrant/cookbooks/python"]
+	path = Vagrant/cookbooks/python
+	url = https://github.com/opscode-cookbooks/python.git
+[submodule "Vagrant/cookbooks/runit"]
+	path = Vagrant/cookbooks/runit
+	url = https://github.com/opscode-cookbooks/runit.git
+[submodule "Vagrant/cookbooks/supervisor"]
+	path = Vagrant/cookbooks/supervisor
+	url = https://github.com/opscode-cookbooks/supervisor.git
+[submodule "Vagrant/cookbooks/chef-cookbook-ssl"]
+	path = Vagrant/cookbooks/chef-cookbook-ssl
+	url = https://github.com/VendaTech/chef-cookbook-ssl.git
+[submodule "Vagrant/cookbooks/vgit"]
+	path = Vagrant/cookbooks/vgit
+	url = https://github.com/VendaTech/chef-cookbook-gpg.git
+[submodule "Vagrant/cookbooks/zeromq"]
+	path = Vagrant/cookbooks/zeromq
+	url = https://github.com/pyronicide/zeromq-cookbook
+[submodule "Vagrant/cookbooks/rabbitmq"]
+	path = Vagrant/cookbooks/rabbitmq
+	url = https://github.com/opscode-cookbooks/rabbitmq.git
