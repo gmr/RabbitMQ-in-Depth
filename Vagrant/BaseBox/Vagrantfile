@@ -1,0 +1,57 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+
+  config.vm.box = "precise64-chef"
+  config.vm.box_url = "http://gavinroy.com/downloads/rabbitmq-in-depth/ubuntu-12.04-omnibus-chef.box"
+
+  config.vm.provision "chef_solo" do |chef|
+
+    chef.add_recipe "erlang::default"
+    chef.add_recipe "git::default"
+    chef.add_recipe "python::default"
+    chef.add_recipe "rabbitmq::default"
+    chef.add_recipe "supervisor::default"
+    chef.add_recipe "zeromq::default"
+    chef.add_recipe "rabbitmq-in-depth::default"
+    chef.add_recipe "rabbitmq-in-depth::ipython"
+    chef.add_recipe "rabbitmq-in-depth::opencv"
+    chef.add_recipe "rabbitmq-in-depth::rabbitmq"
+
+    chef.json = {
+      "erlang" => {
+        "install_method" => "esl"
+      },
+      "rabbitmq" => {
+        "version" => "3.1.5"
+      },
+      "supervisor" => {
+        "inet_port" => 9001
+      }
+    }
+  end
+
+  # IPython
+  config.vm.network :forwarded_port, guest: 8888, host: 8888
+
+  # Supervisord
+  config.vm.network :forwarded_port, guest: 9001, host: 9001
+
+  # RabbitMQ AMQP
+  config.vm.network :forwarded_port, guest: 5671, host: 5671
+  config.vm.network :forwarded_port, guest: 5672, host: 5672
+
+  # RabbitMQ Management Interface
+  config.vm.network :forwarded_port, guest: 15670, host: 15670
+  config.vm.network :forwarded_port, guest: 15671, host: 15671
+  config.vm.network :forwarded_port, guest: 15672, host: 15672
+
+  # RabbitMQ MQTT
+  config.vm.network :forwarded_port, guest: 1883, host: 1883
+  config.vm.network :forwarded_port, guest: 8883, host: 8883
+
+  # RabbitMQ Stomp
+  config.vm.network :forwarded_port, guest: 61613, host: 61613
+
+end
