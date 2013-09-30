@@ -8,7 +8,7 @@ import cv2
 def _boxes(filename, faces):
     img = cv2.imread(filename)
     for (x, y, w, h) in faces:
-        cv2.rectangle(img, (x, y), (x + w, y + h), (127, 255, 0), 1)
+        cv2.rectangle(img, (x, y), (x + w, y + h), (100, 100, 255), 2)
     filename = filename.split('/')[-1]
     parts = filename.split('.')
     new_name = '/tmp/%s-detected.%s' % (parts[0], parts[1])
