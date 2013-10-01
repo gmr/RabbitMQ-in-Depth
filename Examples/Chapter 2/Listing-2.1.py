@@ -1,15 +1,15 @@
 #!/usr/bin/env python
-import rmqid
+import rabbitpy
 
 url = 'amqp://guest:guest@localhost:5672/%2F'
-connection = rmqid.Connection(url)
+connection = rabbitpy.Connection(url)
 channel = connection.channel()
-queue = rmqid.Queue(channel, 'example')
+queue = rabbitpy.Queue(channel, 'example')
 
 while len(queue) > 0:
     message = queue.get()
-    print 'Message:'
-    print ' ID: %s' % message.properties['message_id']
-    print ' Time: %s' % message.properties['timestamp'].isoformat()
-    print ' Body: %s' % message.body
+    print('Message:')
+    print(' ID: %s' % message.properties['message_id'])
+    print(' Time: %s' % message.properties['timestamp'].isoformat())
+    print(' Body: %s' % message.body)
     message.ack()
