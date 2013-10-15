@@ -28,6 +28,10 @@ Vagrant.configure("2") do |config|
       },
       "supervisor" => {
         "inet_port" => 9001
+      },
+      "zeromq" => {
+        "src_version" => "4.0.1",
+        "src_mirror" => "http://download.zeromq.org/zeromq-4.0.1.tar.gz"
       }
     }
   end
