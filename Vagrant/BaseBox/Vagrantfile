@@ -3,7 +3,7 @@
 
 Vagrant.configure("2") do |config|
 
-  config.vm.box = "saucy-server-chef"
+  config.vm.box = "rabbitmq-in-depth"
   config.vm.box_url = "http://gavinroy.com/downloads/rabbitmq-in-depth/saucy-server.box"
 
   config.vm.provision "chef_solo" do |chef|
