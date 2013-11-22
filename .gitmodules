@@ -46,3 +46,6 @@
 [submodule "Vagrant/BaseBox/cookbooks/chef_handler"]
 	path = Vagrant/BaseBox/cookbooks/chef_handler
 	url = https://github.com/opscode-cookbooks/chef_handler.git
+[submodule "Vagrant/BaseBox/cookbooks/deb_pkg_unautostart"]
+	path = Vagrant/BaseBox/cookbooks/deb_pkg_unautostart
+	url = https://github.com/hw-cookbooks/deb_pkg_unautostart.git
