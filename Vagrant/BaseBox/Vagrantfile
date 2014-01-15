@@ -12,6 +12,7 @@ Vagrant.configure("2") do |config|
     config.vm.network :forwarded_port, guest: 5672, host: 5672
     config.vm.network :forwarded_port, guest: 8883, host: 8883
     config.vm.network :forwarded_port, guest: 8888, host: 8888
+    config.vm.network :forwarded_port, guest: 8900, host: 8900
     config.vm.network :forwarded_port, guest: 9001, host: 9001
     config.vm.network :forwarded_port, guest: 15670, host: 15670
     config.vm.network :forwarded_port, guest: 15671, host: 15671
@@ -32,6 +33,7 @@ Vagrant.configure("2") do |config|
       chef.add_recipe "rabbitmq-in-depth::gitrepo"
       chef.add_recipe "rabbitmq-in-depth::ipython"
       chef.add_recipe "rabbitmq-in-depth::opencv"
+      chef.add_recipe "rabbitmq-in-depth::statelessd"
       chef.json = {
         :erlang => {
           :gui_tools => false,
