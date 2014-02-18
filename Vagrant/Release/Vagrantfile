@@ -79,7 +79,6 @@ Vagrant.configure("2") do |config|
       secondary_chef.add_recipe "python::default"
       secondary_chef.add_recipe "rabbitmq::default"
       secondary_chef.add_recipe "rabbitmq-in-depth::default"
-      secondary_chef.add_recipe "rabbitmq-in-depth::statelessd"
       secondary_chef.json = {
         :erlang => {
           :gui_tools => false,
