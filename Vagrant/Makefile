@@ -1,8 +1,4 @@
-base-box:
-	cd BaseBox
-	vagrant package --base
-
-release:
+all:
 	@echo "Building release zipfile"
 	@rm -rf rmqid-vagrant rmqid-vagrant.zip
 	@cp -r Release rmqid-vagrant
