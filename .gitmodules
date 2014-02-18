@@ -79,3 +79,9 @@
 [submodule "Vagrant/Release/cookbooks/zeromq"]
 	path = Vagrant/Release/cookbooks/zeromq
 	url = https://github.com/pyronicide/zeromq-cookbook.git
+[submodule "Vagrant/Release/cookbooks/git"]
+	path = Vagrant/Release/cookbooks/git
+	url = https://github.com/opscode-cookbooks/git.git
+[submodule "Vagrant/Release/cookbooks/python"]
+	path = Vagrant/Release/cookbooks/python
+	url = https://github.com/opscode-cookbooks/python.git
