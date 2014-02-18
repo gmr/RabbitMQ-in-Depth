@@ -49,3 +49,9 @@
 [submodule "Vagrant/Release/cookbooks/zeromq"]
 	path = Vagrant/Release/cookbooks/zeromq
 	url = https://github.com/pyronicide/zeromq-cookbook.git
+[submodule "Vagrant/Release/cookbooks/yum-epel"]
+	path = Vagrant/Release/cookbooks/yum-epel
+	url = https://github.com/opscode-cookbooks/yum-epel.git
+[submodule "Vagrant/Release/cookbooks/yum-erlang_solutions"]
+	path = Vagrant/Release/cookbooks/yum-erlang_solutions
+	url = https://github.com/opscode-cookbooks/yum-erlang_solutions.git
