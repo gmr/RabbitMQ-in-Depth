@@ -24,7 +24,7 @@
 	url = https://github.com/opscode-cookbooks/python.git
 [submodule "Vagrant/Release/cookbooks/rabbitmq"]
 	path = Vagrant/Release/cookbooks/rabbitmq
-	url = https://github.com/gmr/rabbitmq.git
+	url = https://github.com/opscode-cookbooks/rabbitmq.git
 [submodule "Vagrant/Release/cookbooks/rabbitmq-in-depth"]
 	path = Vagrant/Release/cookbooks/rabbitmq-in-depth
 	url = https://github.com/gmr/rabbitmq-in-depth-cookbook.git
