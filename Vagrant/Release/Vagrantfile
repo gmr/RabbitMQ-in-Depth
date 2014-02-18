@@ -7,7 +7,7 @@ Vagrant.configure("2") do |config|
   config.vm.box_url = "http://gavinroy.com/downloads/rabbitmq-in-depth/saucy-server.box"
   config.vm.box = "rabbitmq-in-depth"
 
-  config.vm.define "primary" do |primary|
+  config.vm.define "primary", primary: true do |primary|
     primary.vm.hostname = 'primary'
     primary.vm.network :forwarded_port, guest: 1883, host: 1883
     primary.vm.network :forwarded_port, guest: 5671, host: 5671
@@ -72,15 +72,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.define "secondary" do |secondary|
     secondary.vm.hostname = 'secondary'
-    secondary.vm.network :forwarded_port, guest: 1883, host: 1883
-    secondary.vm.network :forwarded_port, guest: 5671, host: 5671
-    secondary.vm.network :forwarded_port, guest: 5672, host: 5672
-    secondary.vm.network :forwarded_port, guest: 8883, host: 8883
-    secondary.vm.network :forwarded_port, guest: 8888, host: 8888
-    secondary.vm.network :forwarded_port, guest: 15670, host: 15670
-    secondary.vm.network :forwarded_port, guest: 15671, host: 15671
-    secondary.vm.network :forwarded_port, guest: 15672, host: 15672
-    secondary.vm.network :forwarded_port, guest: 61613, host: 61613
+    secondary.vm.network :forwarded_port, guest: 5672, host: 5673
     secondary.vm.network :private_network, ip: "192.168.50.5"
     secondary.vm.provision "chef_solo" do |chef|
       chef.add_recipe "erlang::default"
@@ -102,9 +94,7 @@ Vagrant.configure("2") do |config|
           :use_distro_version => false,
           :version => rabbitmq_version,
           :enable_plugins => %w[rabbitmq_management_agent
-                                rabbitmq_consistent_hash_exchange
-                                rabbitmq_mqtt
-                                rabbitmq_stomp]
+                                rabbitmq_consistent_hash_exchange]
         }
       }
     end
