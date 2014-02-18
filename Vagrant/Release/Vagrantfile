@@ -21,9 +21,6 @@ Vagrant.configure("2") do |config|
     primary.vm.network :forwarded_port, guest: 61613, host: 61613
     primary.vm.network :private_network, ip: "192.168.50.4"
     primary.vm.provision "chef_solo" do |chef|
-      chef.add_recipe "erlang::default"
-      chef.add_recipe "git::default"
-      chef.add_recipe "python::default"
       chef.add_recipe "rabbitmq::default"
       chef.add_recipe "rabbitmq::mgmt_console"
       chef.add_recipe "rabbitmq::plugin_management"
@@ -71,9 +68,6 @@ Vagrant.configure("2") do |config|
     secondary.vm.network :forwarded_port, guest: 5672, host: 5673
     secondary.vm.network :private_network, ip: "192.168.50.5"
     secondary.vm.provision "chef_solo" do |secondary_chef|
-      secondary_chef.add_recipe "erlang::default"
-      secondary_chef.add_recipe "git::default"
-      secondary_chef.add_recipe "python::default"
       secondary_chef.add_recipe "rabbitmq::default"
       secondary_chef.add_recipe "rabbitmq::plugin_management"
       secondary_chef.add_recipe "rabbitmq-in-depth::default"
@@ -92,5 +86,4 @@ Vagrant.configure("2") do |config|
       }
     end
   end
-
 end

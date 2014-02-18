@@ -5,5 +5,14 @@ Vagrant.configure("2") do |config|
     config.vm.box_url = "http://gavinroy.com/downloads/rabbitmq-in-depth/saucy-server.box"
     config.vm.provision "chef_solo" do |chef|
       chef.add_recipe "deb_pkg_unautostart::default"
+      chef.add_recipe "erlang::default"
+      chef.add_recipe "git::default"
+      chef.add_recipe "python::default"
+      chef.json = {
+        :erlang => {
+          :gui_tools => false,
+          :install_method => "package"
+        }
+      }
     end
 end
