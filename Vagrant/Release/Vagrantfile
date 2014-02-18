@@ -1,6 +1,5 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
-erlang_cookie = 'XBCDDYAVPRVEYREVJLXS'
 rabbitmq_version = '3.2.3'
 
 Vagrant.configure("2") do |config|
@@ -41,9 +40,6 @@ Vagrant.configure("2") do |config|
           :install_method => "package"
         },
         :rabbitmq => {
-          :cluster => true,
-          :erlang_cookie => erlang_cookie,
-          :erlang_cookie_path => "/var/lib/rabbitmq/.erlang.cookie",
           :use_distro_version => false,
           :version => rabbitmq_version,
           :enable_plugins => %w[rabbitmq_management_visualiser
@@ -85,9 +81,6 @@ Vagrant.configure("2") do |config|
           :install_method => "package"
         },
         :rabbitmq => {
-          :cluster => true,
-          :erlang_cookie => erlang_cookie,
-          :erlang_cookie_path => "/var/lib/rabbitmq/.erlang.cookie",
           :use_distro_version => false,
           :version => rabbitmq_version,
           :enable_plugins => %w[rabbitmq_management_agent
