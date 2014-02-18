@@ -1,0 +1,68 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+erlang_cookie = 'XBCDDYAVPRVEYREVJLXS'
+rabbitmq_version = '3.2.1'
+
+Vagrant.configure("2") do |config|
+    config.vm.box = "rabbitmq-in-depth"
+    config.vm.box_url = "http://gavinroy.com/downloads/rabbitmq-in-depth/saucy-server.box"
+    config.vm.hostname = 'primary'
+    config.vm.network :forwarded_port, guest: 1883, host: 1883
+    config.vm.network :forwarded_port, guest: 5671, host: 5671
+    config.vm.network :forwarded_port, guest: 5672, host: 5672
+    config.vm.network :forwarded_port, guest: 8883, host: 8883
+    config.vm.network :forwarded_port, guest: 8888, host: 8888
+    config.vm.network :forwarded_port, guest: 8900, host: 8900
+    config.vm.network :forwarded_port, guest: 9001, host: 9001
+    config.vm.network :forwarded_port, guest: 15670, host: 15670
+    config.vm.network :forwarded_port, guest: 15671, host: 15671
+    config.vm.network :forwarded_port, guest: 15672, host: 15672
+    config.vm.network :forwarded_port, guest: 61613, host: 61613
+    config.vm.network :private_network, ip: "10.50.50.10"
+    config.vm.provision "chef_solo" do |chef|
+      chef.add_recipe "deb_pkg_unautostart::default"
+      chef.add_recipe "erlang::default"
+      chef.add_recipe "git::default"
+      chef.add_recipe "python::default"
+      chef.add_recipe "rabbitmq::default"
+      chef.add_recipe "rabbitmq::mgmt_console"
+      chef.add_recipe "rabbitmq::plugin_management"
+      chef.add_recipe "supervisor::default"
+      chef.add_recipe "zeromq::default"
+      chef.add_recipe "rabbitmq-in-depth::default"
+      chef.add_recipe "rabbitmq-in-depth::gitrepo"
+      chef.add_recipe "rabbitmq-in-depth::ipython"
+      chef.add_recipe "rabbitmq-in-depth::opencv"
+      chef.add_recipe "rabbitmq-in-depth::statelessd"
+      chef.json = {
+        :erlang => {
+          :gui_tools => false,
+          :install_method => "package"
+        },
+        :rabbitmq => {
+          :cluster => true,
+          :erlang_cookie => erlang_cookie,
+          :use_distro_version => false,
+          :version => rabbitmq_version,
+          :enable_plugins => %w[rabbitmq_management_visualiser
+                                rabbitmq_consistent_hash_exchange
+                                rabbitmq_federation
+                                rabbitmq_federation_management
+                                rabbitmq_mqtt
+                                rabbitmq_shovel
+                                rabbitmq_shovel_management
+                                rabbitmq_stomp
+                                rabbitmq_tracing
+                                rabbitmq_web_stomp
+                                rabbitmq_web_stomp_examples]
+        },
+        :supervisor => {
+          :inet_port => 9001
+        },
+        :zeromq => {
+          :src_version => "4.0.1",
+          :src_mirror => "http://download.zeromq.org/zeromq-4.0.1.tar.gz"
+        }
+      }
+    end
+end
