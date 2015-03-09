@@ -1,24 +1,31 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-# Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
-VAGRANTFILE_API_VERSION = "2"
+Vagrant.configure('2') do |config|
+  config.vm.box = 'ubuntu/trusty64'
 
-Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-  config.vm.box = "ubuntu/trusty64"
-  config.vm.hostname = 'primary'
-  config.vm.network :forwarded_port, guest: 1883, host: 1883
-  config.vm.network :forwarded_port, guest: 5671, host: 5671
-  config.vm.network :forwarded_port, guest: 5672, host: 5672
-  config.vm.network :forwarded_port, guest: 8883, host: 8883
-  config.vm.network :forwarded_port, guest: 8888, host: 8888
-  config.vm.network :forwarded_port, guest: 8900, host: 8900
-  config.vm.network :forwarded_port, guest: 9001, host: 9001
-  config.vm.network :forwarded_port, guest: 15670, host: 15670
-  config.vm.network :forwarded_port, guest: 15671, host: 15671
-  config.vm.network :forwarded_port, guest: 15672, host: 15672
-  config.vm.network :forwarded_port, guest: 61613, host: 61613
-  config.vm.network :private_network, ip: "192.168.50.4"
-  config.vm.provision "shell",
-      path: "https://gist.githubusercontent.com/gmr/11199224/raw/build-primary.sh"
+  config.vm.define 'primary', primary: true do |primary|
+    primary.vm.hostname = 'primary'
+    primary.vm.network :forwarded_port, guest: 1883, host: 1883
+    primary.vm.network :forwarded_port, guest: 5671, host: 5671
+    primary.vm.network :forwarded_port, guest: 5672, host: 5672
+    primary.vm.network :forwarded_port, guest: 8883, host: 8883
+    primary.vm.network :forwarded_port, guest: 8888, host: 8888
+    primary.vm.network :forwarded_port, guest: 8900, host: 8900
+    primary.vm.network :forwarded_port, guest: 9001, host: 9001
+    primary.vm.network :forwarded_port, guest: 15670, host: 15670
+    primary.vm.network :forwarded_port, guest: 15671, host: 15671
+    primary.vm.network :forwarded_port, guest: 15672, host: 15672
+    primary.vm.network :forwarded_port, guest: 61613, host: 61613
+    primary.vm.network :private_network, ip: '192.168.50.4'
+    primary.vm.provision 'shell', path: 'build-primary.sh'
+  end
+
+  config.vm.define 'secondary', autostart: false do |secondary|
+    secondaryname = 'secondary'
+    secondary.vm.network :forwarded_port, guest: 5672, host: 5673
+    secondary.vm.network :private_network, ip: '192.168.50.5'
+    secondary.vm.provision 'shell', path: 'build-secondary.sh'
+  end
+
 end
