@@ -3,3 +3,4 @@
 .vagrant
 *.pyc
 *.box
+.ipynb_checkpoints
