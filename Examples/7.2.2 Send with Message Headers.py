@@ -1,0 +1,1 @@
+import stompimport timeconn = stomp.Connection()conn.start()conn.connect()conn.send(body='Example message with Headers',          destination='/queue/stomp-messages',          headers={'app-id': '7.2.2 Example',                   'priority': 5,                   'reply-to': 'reply-to-example',                   'timestamp': int(time.time())})conn.disconnect()
