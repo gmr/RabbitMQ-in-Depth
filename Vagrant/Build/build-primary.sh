@@ -65,6 +65,7 @@ rabbitpy
 readline
 requests
 stomp.py
+statelessd
 tornado
 ipython
 "  > /tmp/requirements.pip
@@ -99,5 +100,94 @@ stop on runlevel [06]
 exec ipython notebook --ipython-dir=/home/vagrant/.ipython
 " > /etc/init/ipython.conf
 
+echo "# Statelessd Upstart Script
+respawn
+
+start on runlevel [2345]
+stop on runlevel [06]
+
+exec /usr/local/bin/tinman -c /etc/statelessd.yml -f
+" > /etc/init/statelessd.conf
+
+echo "%YAML 1.2
+---
+Daemon:
+  pidfile: /var/run/statelessd/statelessd.pid
+  user: nginx
+
+Application:
+  debug: False
+  xsrf_cookies: false
+  paths:
+    base: /usr/local/share/statelessd
+    static: static
+    templates: templates
+  rabbitmq:
+    host: localhost
+    port: 5672
+
+HTTPServer:
+  no_keep_alive: false
+  ports: [8900]
+  xheaders: false
+
+Routes:
+ - ['/([^/]+)/([^/]+)/([^/]+)', statelessd.Publisher]
+ - [/stats, statelessd.Stats]
+ - [/, statelessd.Dashboard]
+
+Logging:
+  version: 1
+  formatters:
+    verbose:
+      format: '%(levelname) -10s %(asctime)s %(processName)-20s %(name) -35s %(funcName) -30s: %(message)s'
+      datefmt: '%Y-%m-%d %H:%M:%S'
+    syslog:
+      format: '%(levelname)s <PID %(process)d:%(processName)s> %(name)s.%(funcName)s(): %(message)s'
+  filters: []
+  handlers:
+    console:
+      class: logging.StreamHandler
+      formatter: verbose
+      debug_only: false
+    syslog:
+      class: logging.handlers.SysLogHandler
+      facility: daemon
+      address: /dev/log
+      formatter: syslog
+  loggers:
+    clihelper:
+      level: WARNING
+      propagate: true
+      handlers: [console, syslog]
+    pika:
+      level: INFO
+      propagate: true
+      handlers: [console, syslog]
+    pika.adapters:
+      level: DEBUG
+      propagate: true
+      handlers: [console, syslog]
+    pika.connection:
+      level: DEBUG
+      propagate: true
+      handlers: [console, syslog]
+    statelessd:
+      level: INFO
+      propagate: true
+      handlers: [console, syslog]
+    tinman:
+      level: INFO
+      propagate: true
+      handlers: [console, syslog]
+    tornado:
+      level: WARNING
+      propagate: true
+      handlers: [console, syslog]
+  disable_existing_loggers: true
+  incremental: false
+" > /etc/statelessd.yml
+
 service rabbitmq-server start
 service ipython start
+service statelessd start
